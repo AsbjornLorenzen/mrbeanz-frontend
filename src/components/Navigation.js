@@ -34,7 +34,7 @@ const NavBar = ( props ) => {
     <StyledAppBar position="static" >
       <Toolbar>
         <TitleTypography variant="h6" >
-          CoffeeHub
+          Mr Beanz
         </TitleTypography>
         <Button color="inherit" onClick={() => navigateTo('home')}>
           Home
