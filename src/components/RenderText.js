@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import { fetchBeanData } from '../utils/api';
 
 const useStyles = makeStyles({
@@ -20,6 +21,9 @@ const useStyles = makeStyles({
 const TextComponent = (props) => {
   const { coffeeData } = props;
   const classes = useStyles();
+  const handleRate = () => {
+    console.log('Rating...')
+  }
 
   return (
     <Box mb={3} marginTop={3}>
@@ -29,6 +33,11 @@ const TextComponent = (props) => {
         <TableRow>
           <TableCell colSpan={3} style={{ borderBottom: '3px solid black', borderTop: '3px solid black'}}>
             Some coffee
+          </TableCell>
+          <TableCell>
+          <Button variant="contained" onClick={handleRate}>
+                Rate this coffee
+          </Button>
           </TableCell>
         </TableRow>
       </TableHead>

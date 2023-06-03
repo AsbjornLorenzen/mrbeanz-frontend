@@ -6,6 +6,7 @@ import NavBar from './components/Navigation'
 import LoginScreen from './components/LoginScreen'
 import React, { useState } from 'react';
 import SearchAndTextBox from './components/QueryScreen';
+import RatingForm from './components/RatingScreen'
 
 function App() {
   const [currentScreen, setCurrentScreen]  = useState('home');
@@ -28,6 +29,8 @@ function App() {
       case 'find':
         // NOT IMPLEMENTED YET
         return <SearchAndTextBox />;
+      case 'rate':
+        return <RatingForm />
       default:
         console.log('Case DEFAULT')
         return null;

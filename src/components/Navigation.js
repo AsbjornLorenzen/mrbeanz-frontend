@@ -36,11 +36,14 @@ const NavBar = ( props ) => {
         <TitleTypography variant="h6" >
           Mr Beanz
         </TitleTypography>
+        <TitleTypography variant="h6" >
+          Welcome, {loggedIn}!
+        </TitleTypography>
         <Button color="inherit" onClick={() => navigateTo('home')}>
           Home
         </Button>
         {(loggedIn == '') ? loginButton() : logoutButton()}
-        <Button color="inherit" onClick={() => navigateTo('find')}>
+        <Button color="inherit" onClick={() => navigateTo('rate')}>
           Find
         </Button>
       </Toolbar>
