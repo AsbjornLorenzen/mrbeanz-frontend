@@ -43,9 +43,7 @@ const LoginScreen = ( props ) => {
     event.preventDefault();
     const credentials = {username: username, password: password}
     const res = await userLogin(credentials).then(res => {
-        console.log('Res: ',res)
         if (res.success == true) {
-            console.log('Login!')
             setLoggedIn(res.username)
             navigateTo('home')
         } else {

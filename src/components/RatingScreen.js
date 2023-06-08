@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Rating, TableCell, TableRow, TableHead, Table } from '@mui/material';
-import { Tab } from '@mui/base';
+import { makeStyles } from '@mui/styles';
+import { TextField, Button, Box, Rating, TableCell, TableRow, TableHead, Typography } from '@mui/material';
+import { postBeanRating } from '../utils/api';
+import { Snackbar, SnackbarContent } from '@mui/material';
+
 
 const RatingForm = ( props ) => {
-  const { userid, coffeeid } = props;
+  const { userid, coffeeid, navigateTo, setOpen } = props;
 
   const currentDate = new Date();
   const year = currentDate.getFullYear(); // Current year (e.g., 2023)
@@ -11,8 +14,8 @@ const RatingForm = ( props ) => {
   const day = currentDate.getDate(); // Current day of the month (e.g., 31)
   const formattedDate = `${year}-${month}-${day}`;
   const [ratingData, setRatingData] = useState({
-    userid: '',
-    coffeeid: '',
+    userid: userid,
+    coffeeid: coffeeid,
     rating: 0,
     flavorProfile: '',
     sweetness: 0,
@@ -21,6 +24,7 @@ const RatingForm = ( props ) => {
     bitterness: 0,
     date: formattedDate,
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,44 +43,20 @@ const RatingForm = ( props ) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform submit logic here
-    console.log(ratingData); // Example: Log the rating data to the console
-    // Reset the form
-    setRatingData({
-      userid: '',
-      coffeeid: '',
-      rating: 0,
-      flavorProfile: '',
-      sweetness: 0,
-      body: 0,
-      acidity: 0,
-      bitterness: 0,
-      date: '',
-    });
+    postBeanRating(ratingData)
+    setOpen(true)
+    navigateTo('home')
   };
 
   return (
-    <Box maxWidth={400} mx="auto">
+    <Box maxWidth={400} mx="auto"  >
       <form onSubmit={handleSubmit}>
-        <TableCell>
-            User ID:
-        <TextField
-          name="userid"
-          label="User ID"
-          value={ratingData.userid}
-          onChange={handleChange}
-          fullWidth
-          required
-        />
-        </TableCell>
-        <TextField
-          name="coffeeid"
-          label="Coffee ID"
-          value={ratingData.coffeeid}
-          onChange={handleChange}
-          fullWidth
-          required
-        />
+        <TableRow> <TableCell /> </TableRow>
+        <TableRow>
+        <Typography variant="h6" >
+          Rating coffee {coffeeid}
+        </Typography>
+        </TableRow>
         <TableRow>
         <TableCell>
         Overall score:
@@ -151,14 +131,6 @@ const RatingForm = ( props ) => {
           name="flavorProfile"
           label="Flavor Profile"
           value={ratingData.flavorProfile}
-          onChange={handleChange}
-          fullWidth
-          required
-        />
-        <TextField
-          name="date"
-          label="Date of Rating"
-          value={ratingData.date}
           onChange={handleChange}
           fullWidth
           required

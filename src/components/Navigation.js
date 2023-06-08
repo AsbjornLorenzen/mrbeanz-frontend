@@ -12,7 +12,7 @@ const TitleTypography = styled(Typography)({
 });
 
 const NavBar = ( props ) => {
-  const { navigateTo, setLoggedIn, loggedIn } = props;
+  const { navigateTo, setLoggedIn, loggedIn, open, setOpen } = props;
   
   const loginButton = () => {
     return (
@@ -37,14 +37,17 @@ const NavBar = ( props ) => {
           Mr Beanz
         </TitleTypography>
         <TitleTypography variant="h6" >
-          Welcome, {loggedIn}!
+          {(loggedIn != '') && "Welcome, " + loggedIn + '!' }
         </TitleTypography>
         <Button color="inherit" onClick={() => navigateTo('home')}>
           Home
         </Button>
         {(loggedIn == '') ? loginButton() : logoutButton()}
-        <Button color="inherit" onClick={() => navigateTo('rate')}>
+        <Button color="inherit" onClick={() => navigateTo('find')}>
           Find
+        </Button>
+        <Button color="inherit" onClick={() => navigateTo('browse')}>
+          Browse
         </Button>
       </Toolbar>
     </StyledAppBar>

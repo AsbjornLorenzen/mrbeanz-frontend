@@ -24,14 +24,13 @@ const HomePage = ( props ) => {
   const { navigateTo, loggedIn } = props;
   return (
     <RootContainer>
-      <LogoImage src="mrbeanz_logo.png" />
+      <LogoImage src="../mrbeanz_logo.png" />
       <TitleTypography variant="h4">
         Welcome to MrBeanz xD!
       </TitleTypography>
       <Typography variant="body1" align="center">
         Discover and rate the best coffee.
       </Typography>
-      {console.log(loggedIn)}
       {loggedIn == '' ? <Button variant="contained" color="primary" onClick={() => navigateTo('login')}>
         Login
       </Button> : null}

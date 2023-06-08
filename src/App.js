@@ -7,39 +7,47 @@ import LoginScreen from './components/LoginScreen'
 import React, { useState } from 'react';
 import SearchAndTextBox from './components/QueryScreen';
 import RatingForm from './components/RatingScreen'
+import QueryBox from './components/QueryWithOptionsScreen';
+import { Snackbar, SnackbarContent }  from '@mui/material';
 
 function App() {
   const [currentScreen, setCurrentScreen]  = useState('home');
   const [loggedIn, setLoggedIn] = useState('');
-  const coffeeid = 1234;
+  const [currentCoffeeId, setCurrentCoffeeId] = useState(1234);
+  const [open, setOpen] = useState(false);
 
   const navigateTo = (screen) => {
-    console.log(screen)
     setCurrentScreen(screen);
     renderScreen();
   }
 
+  const onClose = () => {
+    setOpen(false)
+  }
+
   const renderScreen = () => {
-    console.log('RENDERING ', currentScreen)
     switch (currentScreen) {
       case 'home':
         return <HomePage navigateTo={navigateTo} loggedIn={loggedIn}/>;
       case 'login':
         return <LoginScreen setLoggedIn={setLoggedIn} navigateTo={navigateTo}/>;
       case 'find':
-        // NOT IMPLEMENTED YET
-        return <SearchAndTextBox />;
+        return <SearchAndTextBox setCurrentCoffee={setCurrentCoffeeId} navigateTo={navigateTo} />;
       case 'rate':
-        return <RatingForm />
+        return <RatingForm coffeeid={currentCoffeeId} userid={loggedIn} navigateTo={navigateTo} setOpen={setOpen} />
+      case 'browse':
+        return <QueryBox navigateTo={navigateTo} setCurrentCoffee={setCurrentCoffeeId} />
       default:
-        console.log('Case DEFAULT')
         return null;
     }
   };
 
   return (
     <div className="App">
-      <NavBar navigateTo={navigateTo} setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
+      <Snackbar open={open} autoHideDuration={3000} onClose={onClose}>
+      <SnackbarContent message="Successfully submitted rating" />
+      </Snackbar>
+      <NavBar navigateTo={navigateTo} setLoggedIn={setLoggedIn} loggedIn={loggedIn} open={open} setOpen={setOpen} />
       <div>{renderScreen()}</div>
     </div>
   );

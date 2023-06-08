@@ -19,35 +19,35 @@ const useStyles = makeStyles({
 });
 
 const TextComponent = (props) => {
-  const { coffeeData } = props;
+  const { coffeeData, setCurrentCoffee, rateable, navigateTo } = props;
   const classes = useStyles();
-  const handleRate = () => {
-    console.log('Rating...')
+  const handleRateClick = () => {
+    setCurrentCoffee(coffeeData.CoffeeID)
   }
 
   return (
     <Box mb={3} marginTop={3}>
-    <TableContainer className={classes.tableContainer} component={Paper}>
-      <Table>
+    <TableContainer className={classes.tableContainer} component={Paper} style={{ border: '1px solid black' }}>
+      <Table >
       <TableHead>
-        <TableRow>
-          <TableCell colSpan={3} style={{ borderBottom: '3px solid black', borderTop: '3px solid black'}}>
-            Some coffee
-          </TableCell>
-          <TableCell>
-          <Button variant="contained" onClick={handleRate}>
-                Rate this coffee
-          </Button>
-          </TableCell>
-        </TableRow>
       </TableHead>
         <TableBody>
           {Object.entries(coffeeData).map(([key, value]) => (
             <TableRow key={key}>
               <TableCell>{key}</TableCell>
-              <TableCell>{value}</TableCell>
+              <TableCell>{value.toString()}</TableCell>
             </TableRow>
           ))}
+
+        {rateable &&
+        <TableRow>
+          <TableCell align="center" colSpan={2}>
+          <Button variant="contained" onClick={handleRateClick}>
+                Rate this coffee
+          </Button>
+          </TableCell>
+        </TableRow>
+        }
         </TableBody>
       </Table>
     </TableContainer>
