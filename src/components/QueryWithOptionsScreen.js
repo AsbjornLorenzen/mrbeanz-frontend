@@ -46,17 +46,17 @@ const QueryBox = (props) => {
   ]
 
   const vendors = [
-    [1, 'Esbjerg'],
-    [2, 'Nyhavn, Copenhagen'],
-    [3, 'Vesterbro, Copenhagen'],
-    [4, 'Frederiksberg, Copenhagen'],
-    [5, 'Christianshavn, Copenhagen'],
-    [6, 'Osterbro, Copenhagen'],
-    [7, 'Aarhus C, Aarhus'],
-    [8, 'Trojborg, Aarhus'],
-    [9, 'Norrebro, Copenhagen'],
-    [10, 'Vesterbro, Aarhus'],
-    [11, 'City Center, Copenhagen']
+    ["1", 'Esbjerg'],
+    ["2", 'Nyhavn, Copenhagen'],
+    ["3", 'Vesterbro, Copenhagen'],
+    ["4", 'Frederiksberg, Copenhagen'],
+    ["5", 'Christianshavn, Copenhagen'],
+    ["6", 'Osterbro, Copenhagen'],
+    ["7", 'Aarhus C, Aarhus'],
+    ["8", 'Trojborg, Aarhus'],
+    ["9", 'Norrebro, Copenhagen'],
+    ["10", 'Vesterbro, Aarhus'],
+    ["11", 'City Center, Copenhagen']
   ]
 
   return (

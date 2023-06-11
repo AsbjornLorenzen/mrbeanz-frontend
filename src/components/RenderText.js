@@ -23,6 +23,7 @@ const TextComponent = (props) => {
   const classes = useStyles();
   const handleRateClick = () => {
     setCurrentCoffee(coffeeData.CoffeeID)
+    navigateTo('rate')
   }
 
   return (
